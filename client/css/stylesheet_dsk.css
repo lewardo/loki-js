@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0; /* fix default settings */
+  box-sizing: border-box; /* the only acceptable box-sizing ;) */
+  font-family: 'Roboto Mono', monospace;
+  user-select: none;
+}
+
+body {
+  background-color: #ede9e8;
+  overflow: hidden;
+}
+
+/* to hide conditionally rendered elements before Alpinejs takes over, eventually removed */
+[mask] {
+  visibility: hidden;
+}
+
+[init], [initw] > * {
+  transform: translateX(-48px);
+  opacity: 0;
+}
+
+#menu {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+#title {
+  width: auto;
+  height: 10vh;
+  left: 0;
+  top: 0;
+  padding: 2vh 4vw;
+  position: absolute;
+  font-size: 48px;
+  font-weight: bolder;
+  letter-spacing: 12px;
+  color: #222;
+}
+
+#links {
+  top: 0;
+  right: 10vw;
+  position: absolute;
+  width: 40vw;
+  height: 10vh;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  width: 100%;
+  margin: 0 12px;
+  font-size: 18px;
+  font-weight: bolder;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  position: relative;
+  color: #222;
+}
+
+#media {
+  bottom: 0;
+  right: 10vw;
+  position: absolute;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25%;
+  height: 10%;
+  list-style: none;
+}
+
+#media span a {
+  font-size: 18px;
+  font-weight: bolder;
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.5s;
+}
+
+#media span a:hover {
+  transform: translateY(-4px);
+}
+
+#media span a::after {
+  content: '';
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  background: var(--color);
+}
+
+#aesthetics {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#aesthetics > .bar {
+  height: 0;
+  width: 1px;
+  position: absolute;
+  top: 0;
+  left: var(--offset);
+  background-color: #888;
+}
+
+#overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: fixed;
+  background: #222;
+  z-index: 10;
+}
+
+main {
+  width: 80vw;
+  height: 80vh;
+  top: 10vh;
+  left: 10vw;
+  position: absolute;
+}
+
+#about {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left:10%;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+#about video {
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  border-radius: 12px;
+}
+
+#contact {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  border-radius: 20px;
+  padding: 10%;
+  z-index: 10;
+  overflow: hidden;
+  box-shadow: 0 0 40vmax 5vmax #222;
+}
+
+#form {
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: #ede9e8;
+  padding: 2vh 2vw;
+}
+
+#form input {
+  width: 50%;
+  margin: 24px 25%;
+  padding: 8px;
+  font-size: 20px;
+  border-radius: 4px;
+}
+
+#form input:focus {
+  outline: none;
+}
+
+#maps {
+  width: 50%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: absolute;
+  background: url("../assets/i/location.jpg") center;
+  background-size: auto 100%;
+}

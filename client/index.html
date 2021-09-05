@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="loki-js">
+  <meta name="keywords" content="HTML, CSS, Javascript, AlpineJS, localStorage">
+  <meta name="author" content="lewardo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title> Green </title>
+
+  <link rel="icon" href="assets/i/favicon.ico">
+  
+  <!-- load script first to async load the rest of the resources while the DOM is being rendered -->
+  <script src="js/window.js"></script>
+  <script src="js/plugin.js"></script>
+  <script src="js/index.js"></script>
+
+  <!-- media queries on entire stylesheets to simplify their stucture -->
+  <link rel="stylesheet" media="screen and (min-width:800px)" href="css/stylesheet_dsk.css">
+  <link rel="stylesheet" media="screen and (max-width:800px)" href="css/stylesheet_mbl.css"> 
+  <!-- mobile styling not implemented bc I ran out of time ;) -->
+</head>
+<body>
+  <menu x-data="{}" id="menu">
+    <span init id="title"> loki </span>
+
+    <nav initw id="links">
+      <span class="link" @click="console.log(1)">about.</span>
+      <span class="link" @click="console.log(2)">projects.</span>
+      <span class="link" @click="$dispatch('open')">contact.</span>
+    </nav>
+
+    <div initw id="media">
+      <span class="link" id="dk" style="--color: #0db7ed"><a href="https://hub.docker.com">dk</a></span>
+      <span class="link" id="gh" style="--color: #333"   ><a href="https://www.github.com/lewardo">gh</a></span>
+      <span class="link" id="bb" style="--color: #2684ff"><a href="https://www.bitbucket.org">bb</a></span>
+      <span class="link" id="yt" style="--color: #c4302b"><a href="https://www.youtube.com">yt</a></span>
+    </div>
+
+    <div x-data="{ bars: [ 20, 40, 75 ] }" id="aesthetics">
+      <template x-for="bar in bars">
+        <div class="bar" :style="{ '--offset': bar.toString() + '%' }"></div>
+      </template>
+    </div>
+  </menu>
+
+  <main x-data="{ open: false }">
+    <section id="overlay"></section>
+
+    <section init id="about" x-data="{ height: window.innerHeight }" @resize.window="height = window.innerHeight">
+      <video src="assets/v/nodeing.mp4" :height="height * 0.8" autoplay loop></video>
+    </section>
+
+    <section id="projects" >
+
+    </section>
+
+    <section mask id="contact" x-show="open" x-transition.duration.1000ms @click.away="open = false" @open.document="open = true">
+      <div id="form" x-data="form.init()" x-init="update()">
+        <form action="javascript:void(0)" @input="form.info.saveInfo(name, surname, email)">
+          <input required type="text"  placeholder="name"    autocomplete="off" name="name"    id="name"    x-model="name">
+          <input required type="text"  placeholder="surname" autocomplete="off" name="surname" id="surname" x-model="surname">
+          <input required type="email" placeholder="email"   autocomplete="off" name="email"   id="email"   x-model="email">
+          <input required type="submit" value="send me stuff!" @click.prevent="form.submit(name, surname, email); update()">
+        </form>
+      </div>
+      <div id="maps" @click="window.location = mapsURL"></div>
+    </section>
+  </main>
+</body>
+</html>
